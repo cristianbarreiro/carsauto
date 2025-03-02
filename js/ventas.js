@@ -116,14 +116,16 @@ filterButton.addEventListener("click", () => {
     .then((response) => response.json())
     .then((carsData) => {
       if (carsData.length === 0) {
-        let alert = `<div class="alert alert-warning d-inline-flex align-items-center alert-fixed fade show w-auto" id="filter-alert" role="alert">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
-      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+        let alert = `<div class="alert alert-warning d-flex alert-fixed w-auto" id="filter-alert" role="alert" style="min-height: 40px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
     </svg>
-    <div style="margin-left:4px;">
+    <div class="fs-6 text-truncate" style="margin-left:4px;">
         No se encuentran autos con esas características
     </div>
-</div>`;
+</div>
+
+`;
         if (!document.querySelector("#filter-alert")) {
           document.body.insertAdjacentHTML("beforeend", alert);
 
