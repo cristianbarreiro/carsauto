@@ -260,21 +260,33 @@ h6 {
 .alert-fixed {
   position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999; 
-  width: 100%;
-  max-width: 500px; 
-  margin: 0 auto;
+  right: 20px;
+  z-index: 9999;
+  max-width: 500px;
+  margin: 0;
 }
+
 .alert-fixed .close {
   position: absolute;
   top: 0;
   right: 0;
   padding: 0.75rem 1.25rem;
-  color: inherit;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
+  font-size: small;
   opacity: 0.5;
+}
+
+.alert-fixed p {
+  all: unset;
+}
+
+@media (max-width: 576px) {
+  .alert-fixed {
+    max-width: 90%;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .alert-fixed p {
+    font-size: 12px;
+  }
 }

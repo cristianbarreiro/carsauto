@@ -116,16 +116,18 @@ filterButton.addEventListener("click", () => {
     .then((response) => response.json())
     .then((carsData) => {
       if (carsData.length === 0) {
-        let alert = `<div class="alert alert-warning d-flex alert-fixed w-auto" id="filter-alert" role="alert" style="min-height: 40px;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+        let alert = `<div class="alert alert-warning d-flex alert-fixed position-fixed h-auto" id="filter-alert" role="alert">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill me-1 mt-1" viewBox="0 0 16 16">
         <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
     </svg>
-    <div class="fs-6 text-truncate" style="margin-left:4px;">
+    <div class="fs-6 text-truncate text-wrap d-inline" id="alert-text">
+    <p>
         No se encuentran autos con esas características
+        </p>
     </div>
 </div>
-
 `;
+
         if (!document.querySelector("#filter-alert")) {
           document.body.insertAdjacentHTML("beforeend", alert);
 
@@ -151,6 +153,12 @@ filterButton.addEventListener("click", () => {
 
             if (Array.isArray(carsData) && carsData.length > 0) {
               for (const car of carsData) {
+                let priceUSD = new Intl.NumberFormat("en-US").format(
+                  car.price_usd
+                );
+                let priceUYU = new Intl.NumberFormat("es-UY").format(
+                  car.price_uyu
+                );
                 carsHTML += `
             <div class="car" data-id="${car.id}">
               <div class="row">
@@ -169,7 +177,7 @@ filterButton.addEventListener("click", () => {
                     </div>
                     <div class="col-xl-6">
                       <div class="car-info">
-                        ${car.year} | USD ${car.price_usd} |
+                        ${car.year} | USD ${priceUSD} | UYU ${priceUYU}
                         <div class="rating">
                           ${"★".repeat(car.rating)}${"☆".repeat(5 - car.rating)}
                         </div>
@@ -200,49 +208,49 @@ filterButton.addEventListener("click", () => {
       } else {
         let carsHTML = "";
         for (const car of carsData) {
+          let priceUSD = new Intl.NumberFormat("en-US").format(car.price_usd);
+          let priceUYU = new Intl.NumberFormat("es-UY").format(car.price_uyu);
           carsHTML += `
-              <div class="car" data-id="${car.id}">
-                <div class="row">
-                  <div class="col-img col-lg-4">
-                    <div class="position-relative">
-                      <img src="${car.image}" alt="${car.model}" />
-                      <span class="badge">${
-                        car.status === 0 ? "Nuevo" : "Usado"
-                      }</span>
-                    </div>
+            <div class="car" data-id="${car.id}">
+              <div class="row">
+                <div class="col-img col-lg-4">
+                  <div class="position-relative">
+                    <img src="${car.image}" alt="${car.model}" />
+                    <span class="badge">${
+                      car.status === 0 ? "Nuevo" : "Usado"
+                    }</span>
                   </div>
-                  <div class="col-lg-8">
-                    <div class="row">
-                      <div class="col-xl-6">
-                        <h3>${car.model}</h3>
-                      </div>
-                      <div class="col-xl-6">
-                        <div class="car-info">
-                          ${car.year} | USD ${car.price_usd} |
-                          <div class="rating">
-                            ${"★".repeat(car.rating)}${"☆".repeat(
-            5 - car.rating
-          )}
-                          </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <h3>${car.model}</h3>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="car-info">
+                        ${car.year} | USD ${priceUSD} | UYU ${priceUYU}
+                        <div class="rating">
+                          ${"★".repeat(car.rating)}${"☆".repeat(5 - car.rating)}
                         </div>
                       </div>
                     </div>
-                    <p class="car-description">${car.description}</p>
-                    <div class="car-footer">
-                      <button type="button" class="btn btn-success btn-sm">
-                        <i class="fas fa-shopping-cart"></i> Comprar
-                      </button>
-                      <button type="button" class="btn btn-outline-secondary btn-sm">
-                        <i class="far fa-plus-square"></i> Más info
-                      </button>
-                      <button type="button" class="btn btn-outline-secondary btn-sm">
-                        <i class="far fa-share-square"></i> Compartir
-                      </button>
-                    </div>
+                  </div>
+                  <p class="car-description">${car.description}</p>
+                  <div class="car-footer">
+                    <button type="button" class="btn btn-success btn-sm">
+                      <i class="fas fa-shopping-cart"></i> Comprar
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm">
+                      <i class="far fa-plus-square"></i> Más info
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm">
+                      <i class="far fa-share-square"></i> Compartir
+                    </button>
                   </div>
                 </div>
               </div>
-            `;
+            </div>
+          `;
         }
         carsContainer.innerHTML = "";
         carsContainer.insertAdjacentHTML("beforeend", carsHTML);
