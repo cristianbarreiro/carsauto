@@ -45,16 +45,17 @@ function load_models(brand) {
     });
 }
 
-fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
-  .then((response) => response.json())
-  .then((carsData) => {
-    let carsHTML = "";
+function load_cars() {
+  fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
+    .then((response) => response.json())
+    .then((carsData) => {
+      let carsHTML = "";
 
-    if (Array.isArray(carsData) && carsData.length > 0) {
-      for (const car of carsData) {
-        let priceUSD = new Intl.NumberFormat("en-US").format(car.price_usd);
-        let priceUYU = new Intl.NumberFormat("es-UY").format(car.price_uyu);
-        carsHTML += `
+      if (Array.isArray(carsData) && carsData.length > 0) {
+        for (const car of carsData) {
+          let priceUSD = new Intl.NumberFormat("en-US").format(car.price_usd);
+          let priceUYU = new Intl.NumberFormat("es-UY").format(car.price_uyu);
+          carsHTML += `
             <div class="car" data-id="${car.id}">
               <div class="row">
                 <div class="col-img col-lg-4">
@@ -95,11 +96,13 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
               </div>
             </div>
           `;
+        }
+        carsContainer.innerHTML = "";
+        carsContainer.insertAdjacentHTML("beforeend", carsHTML);
       }
-      carsContainer.insertAdjacentHTML("beforeend", carsHTML);
-    }
-  });
-
+    });
+}
+load_cars();
 filterButton.addEventListener("click", () => {
   const year = yearSelect.value;
   const brand = brandSelect.value;
@@ -146,65 +149,7 @@ filterButton.addEventListener("click", () => {
             }
           }, 1000);
         }
-        fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
-          .then((response) => response.json())
-          .then((carsData) => {
-            let carsHTML = "";
-
-            if (Array.isArray(carsData) && carsData.length > 0) {
-              for (const car of carsData) {
-                let priceUSD = new Intl.NumberFormat("en-US").format(
-                  car.price_usd
-                );
-                let priceUYU = new Intl.NumberFormat("es-UY").format(
-                  car.price_uyu
-                );
-                carsHTML += `
-            <div class="car" data-id="${car.id}">
-              <div class="row">
-                <div class="col-img col-lg-4">
-                  <div class="position-relative">
-                    <img src="${car.image}" alt="${car.model}" />
-                    <span class="badge">${
-                      car.status === 0 ? "Nuevo" : "Usado"
-                    }</span>
-                  </div>
-                </div>
-                <div class="col-lg-8">
-                  <div class="row">
-                    <div class="col-xl-6">
-                      <h3>${car.model}</h3>
-                    </div>
-                    <div class="col-xl-6">
-                      <div class="car-info">
-                        ${car.year} | USD ${priceUSD} | UYU ${priceUYU}
-                        <div class="rating">
-                          ${"★".repeat(car.rating)}${"☆".repeat(5 - car.rating)}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="car-description">${car.description}</p>
-                  <div class="car-footer">
-                    <button type="button" class="btn btn-success btn-sm">
-                      <i class="fas fa-shopping-cart"></i> Comprar
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm">
-                      <i class="far fa-plus-square"></i> Más info
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm">
-                      <i class="far fa-share-square"></i> Compartir
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
-              }
-              carsContainer.innerHTML = "";
-              carsContainer.insertAdjacentHTML("beforeend", carsHTML);
-            }
-          });
+        load_cars();
       } else {
         let carsHTML = "";
         for (const car of carsData) {
