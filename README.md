@@ -23,7 +23,7 @@ Puedes ver el sitio en funcionamiento aquí:
 
 ## Ejercicio propuesto por Hack Academy
 
-<div style="background-color:#f0f0f0; padding:20px; display:inline-block;">
+<div style="background-color:#ffffff; padding:20px; display:inline-block;">
   <img src="https://ha.dev/img/ha_logo/ha_logo.svg" alt="Hack Academy Logo" width="200"/>
 </div>
 
