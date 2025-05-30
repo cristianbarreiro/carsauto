@@ -21,13 +21,6 @@ Puedes ver el sitio en funcionamiento aquí:
 
 ---
 
-## Ejercicio propuesto por Hack Academy
-
-<div style="background-color:#ffffff; padding:20px; display:inline-block;">
-  <img src="https://ha.dev/img/ha_logo/ha_logo.svg" alt="Hack Academy Logo" width="200"/>
-</div>
-
-
 ## 🧰 Tecnologías utilizadas
 
 - **HTML5** — Estructura del contenido
@@ -36,3 +29,7 @@ Puedes ver el sitio en funcionamiento aquí:
 - **Fetch API** — Conexión dinámica con servicios externos
 
 ---
+
+## Ejercicio propuesto por Hack Academy
+
+![ Hack Academy ]([(https://imgur.com/vaVfsa2))
