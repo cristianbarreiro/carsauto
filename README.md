@@ -32,4 +32,4 @@ Puedes ver el sitio en funcionamiento aquí:
 
 ## Ejercicio propuesto por Hack Academy
 
-![ Hack Academy ]([(https://imgur.com/vaVfsa2))
+![ Hack Academy ](https://i.imgur.com/vaVfsa2.png)
