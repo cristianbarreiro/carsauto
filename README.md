@@ -30,6 +30,26 @@ Puedes ver el sitio en funcionamiento aquí:
 
 ---
 
+## ✨ Características
+
+### Navegación Inteligente
+- Sistema de navegación con estado activo persistente
+- Resaltado visual del último enlace visitado
+- Limpieza automática del estado al volver a la página principal
+- Transiciones suaves entre estados
+
+### Carga Dinámica
+- Loader visual durante la carga de vehículos
+- Feedback visual para el usuario durante operaciones asíncronas
+- Transiciones suaves entre estados de carga
+
+### Interfaz Responsiva
+- Diseño adaptable a diferentes dispositivos
+- Navegación intuitiva en móviles y tablets
+- Experiencia de usuario optimizada
+
+---
+
 ## Ejercicio propuesto por Hack Academy
 
 ![ Hack Academy ](https://i.imgur.com/vaVfsa2.png)
